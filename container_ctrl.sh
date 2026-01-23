@@ -1,7 +1,7 @@
 #!/bin/sh
-
-. "${0%/*}/config.conf"
-
+HERE=${0%/*}
+. "$HERE/config.conf"
+exec > "$HERE/run.log" 2>&1
 if [ ! -e "$CONTAINER_DIR/etc/os-release" ]; then
     exit 1
 fi
@@ -31,7 +31,7 @@ ruristart() {
             START_SERVICES="service ssh start"
             ;;
         alpine)
-            START_SERVICES="rm -rf /run/openrc/started/* |true && openrc"
+            START_SERVICES="openrc sysinit"
             ;;
         *)
             START_SERVICES=""
