@@ -922,7 +922,7 @@ delete_system() {
     fi
 
     echo "删除系统目录: $sys_path"
-    ruri -U $sys_path
+    rurima r -U $sys_path
     rm -rf "$sys_path"
 
     echo "系统 $os_name 删除成功"
@@ -957,9 +957,9 @@ config_new_system() {
         return 1
     fi
 
-    local ruri_script="$module_path/bin/ruri"
+    local ruri_script="$module_path/bin/rurima"
     if [ ! -f "$ruri_script" ]; then
-        echo "ruri $ruri_script 不存在"
+        echo "rurima $ruri_script 不存在"
         return 1
     fi
 
@@ -969,7 +969,7 @@ config_new_system() {
 
     chmod 777 "$setup_script" "$sys_dir/usr/local/lib/servicectl/servicectl" "$sys_dir/usr/local/lib/servicectl/serviced"
 
-    "$ruri_script" "$sys_dir" /bin/sh /tmp/setup.sh "$new_os" "$sys_password" "$sys_port"
+    "$ruri_script" r "$sys_dir" /bin/sh /tmp/setup.sh "$new_os" "$sys_password" "$sys_port"
 
     if [ $? -eq 0 ]; then
         echo "系统 $new_os 基础配置完成"

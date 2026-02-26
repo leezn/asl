@@ -8,7 +8,7 @@ fi
 
 ruriumount() {
     fuser -k "$CONTAINER_DIR" >/dev/null 2>&1
-    ruri -U "$CONTAINER_DIR" >/dev/null 2>&1
+    rurima r -U "$CONTAINER_DIR" >/dev/null 2>&1
     umount -lvf "$CONTAINER_DIR" 2>/dev/null
     umount -lf "$CONTAINER_DIR/sdcard" 2>/dev/null
     umount -lf "$CONTAINER_DIR/sys" 2>/dev/null
@@ -58,7 +58,7 @@ ruristart() {
     [ "$PRIVILEGED" = "true" ] && ARGS="$ARGS -p"
     [ "$RUNTIME" = "true" ] && ARGS="$ARGS -S"
 
-    ruri $ARGS "$CONTAINER_DIR" /bin/sh -c "$START_SERVICES" &
+    rurima r $ARGS "$CONTAINER_DIR" /bin/sh -c "$START_SERVICES" &
     echo "- Container started"
 }
 

@@ -76,7 +76,7 @@ configuration() {
 
     if [ -d "$CONTAINER_DIR" ]; then
         ui_print "- Already installed"
-        ruri -U "$CONTAINER_DIR"
+        rurima r -U "$CONTAINER_DIR"
         if [ -d "$CONTAINER_DIR.old" ]; then
             version=1
             while [ -d "$CONTAINER_DIR.old.$version" ]; do
@@ -109,8 +109,8 @@ automatic() {
     cp -r "$MODPATH/setup/servicectl"/* "$CONTAINER_DIR/usr/local/lib/servicectl/"
     chmod 777 "$CONTAINER_DIR/tmp/setup.sh" "$CONTAINER_DIR/usr/local/lib/servicectl/servicectl" "$CONTAINER_DIR/usr/local/lib/servicectl/serviced"
 
-    ruri "$CONTAINER_DIR" /bin/sh /tmp/setup.sh "$RURIMA_LXC_OS" "$PASSWORD" "$PORT"
-    ruri -U "$CONTAINER_DIR"
+    rurima r "$CONTAINER_DIR" /bin/sh /tmp/setup.sh "$RURIMA_LXC_OS" "$PASSWORD" "$PORT"
+    rurima r -U "$CONTAINER_DIR"
 
     ui_print "- Automated installation completed!"
     ui_print "- Note: Please change the default password. Exposing an SSH port with password authentication instead of key-based authentication is always a high-risk behavior!"
